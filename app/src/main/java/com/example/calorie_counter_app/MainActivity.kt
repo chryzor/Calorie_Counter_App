@@ -42,14 +42,17 @@ class MainActivity : AppCompatActivity() {
 
         mealsUpdateButton.setOnClickListener {
             val intent = Intent(this, UpdateActivity::class.java)
+            intent.putExtra("ITEM_NAME", "Meals")
             startActivity(intent)
         }
         waterUpdateButton.setOnClickListener {
             val intent = Intent(this, UpdateActivity::class.java)
+            intent.putExtra("ITEM_NAME", "Water")
             startActivity(intent)
         }
         snacksUpdateButton.setOnClickListener {
             val intent = Intent(this, UpdateActivity::class.java)
+            intent.putExtra("ITEM_NAME", "Snacks")
             startActivity(intent)
         }
 
