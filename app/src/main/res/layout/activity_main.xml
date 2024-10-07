@@ -14,22 +14,10 @@
 
     <!-- Date TextView -->
 
-    <ImageView
-        android:id="@+id/appImage"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="60dp"
-        android:contentDescription="@string/app_image_desc"
-        android:src="@drawable/ic_calories"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/appTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="Calories Counter"
         android:textColor="#444"
         android:textSize="24sp"
@@ -37,7 +25,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.543"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appImage" />
+        tools:layout_editor_absoluteY="181dp" />
 
     <TextView
         android:id="@+id/dateLabel"
