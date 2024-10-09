@@ -1,2 +1,2 @@
 This is a calorie counter app that can help track each individual's health needs. Below is a screenshot of the app.
-![mealIcon](https://github.com/user-attachments/assets/bc463e5f-e0fc-4142-b79a-e8d11e3b7cf1)
+<img width="235" alt="appScreenshot" src="https://github.com/user-attachments/assets/a717aca8-cd61-4318-9c45-ff243e24638b">
