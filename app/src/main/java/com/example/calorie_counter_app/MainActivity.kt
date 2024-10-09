@@ -1,5 +1,6 @@
 package com.example.calorie_counter_app
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         // Find views by ID
         dateValue = findViewById(R.id.dateValue)
         mealsValue = findViewById(R.id.mealsValue)
@@ -40,19 +42,27 @@ class MainActivity : AppCompatActivity() {
         waterUpdateButton = findViewById(R.id.waterUpdateButton)
         snacksUpdateButton = findViewById(R.id.snacksUpdateButton)
 
+        var itemType = ""
+
         mealsUpdateButton.setOnClickListener {
             val intent = Intent(this, UpdateActivity::class.java)
             intent.putExtra("ITEM_NAME", "Meals")
+            itemType = "Meals"
+            intent.putExtra("QUANTITY", mealsValue.text.toString())
             startActivity(intent)
         }
         waterUpdateButton.setOnClickListener {
             val intent = Intent(this, UpdateActivity::class.java)
             intent.putExtra("ITEM_NAME", "Water")
+            itemType = "Water"
+            intent.putExtra("QUANTITY", waterValue.text.toString())
             startActivity(intent)
         }
         snacksUpdateButton.setOnClickListener {
             val intent = Intent(this, UpdateActivity::class.java)
             intent.putExtra("ITEM_NAME", "Snacks")
+            itemType = "Snacks"
+            intent.putExtra("QUANTITY", snacksValue.text.toString())
             startActivity(intent)
         }
 
@@ -65,5 +75,22 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            val resultName = data?.getStringExtra("ITEM_NAME")
+            val resultQuantityString = data?.getStringExtra("QUANTITY")
+            val resultQuantityInt = resultQuantityString?.toInt()
+            if (resultName == "Water") {
+                waterValue.setText("$resultQuantityInt")
+            } else if (resultName == "Meals") {
+                mealsValue.setText("$resultQuantityInt")
+            } else {
+                snacksValue.setText("$resultQuantityInt")
+            }
+        }
     }
 }
