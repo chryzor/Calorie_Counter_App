@@ -92,6 +92,17 @@ class MainActivity : AppCompatActivity() {
             } else {
                 Log.e("MainActivity", "Invalid quantity received")
             }
+            val totalMealString = mealsValue.text.toString()
+            val totalMealInt = totalMealString.toInt()
+            val totalSnacksString = snacksValue.text.toString()
+            val totalSnacksInt = totalSnacksString.toInt()
+            var totalCalories = totalMealInt + totalSnacksInt
+
+            if (totalCalories != null) {
+                totalValue.setText(totalCalories.toString())
+            } else {
+                totalValue.setText("Invalid input")
+            }
         }
 
     }
