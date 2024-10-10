@@ -3,6 +3,7 @@ package com.example.calorie_counter_app
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -30,7 +31,7 @@ class UpdateActivity : AppCompatActivity() {
         }
 
         val quantityText : TextView = findViewById(R.id.itemQuantity)
-        if (itemType == "Water") { quantityText.setText("$quantityString cups") } else { quantityText.setText("$quantityString calories") }
+        if (itemType == "Water") { quantityText.setText("$quantityString cups") } else { quantityText.setText("$quantityString") }
 
         val addButton : Button = findViewById(R.id.addButton)
         val subtractButton : Button = findViewById(R.id.subtractButton)
@@ -40,7 +41,7 @@ class UpdateActivity : AppCompatActivity() {
                 quantityText.setText("$quantityInt cups")
             } else {
                 quantityInt += 10
-                quantityText.setText("$quantityInt calories")
+                quantityText.setText("$quantityInt")
             }
         }
         subtractButton.setOnClickListener {
@@ -49,7 +50,7 @@ class UpdateActivity : AppCompatActivity() {
                 quantityText.setText("$quantityInt cups")
             } else {
                 quantityInt -= 10
-                quantityText.setText("$quantityInt calories")
+                quantityText.setText("$quantityInt")
             }
         }
 

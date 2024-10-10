@@ -4,10 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -35,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         dateValue = findViewById(R.id.dateValue)
         mealsValue = findViewById(R.id.mealsValue)
         waterValue = findViewById(R.id.waterValue)
+        var actualWaterValue = 3
         snacksValue = findViewById(R.id.snacksValue)
         totalValue = findViewById(R.id.totalValue)
 
@@ -49,21 +52,21 @@ class MainActivity : AppCompatActivity() {
             intent.putExtra("ITEM_NAME", "Meals")
             itemType = "Meals"
             intent.putExtra("QUANTITY", mealsValue.text.toString())
-            startActivity(intent)
+            activity2launcher.launch(intent)
         }
         waterUpdateButton.setOnClickListener {
             val intent = Intent(this, UpdateActivity::class.java)
             intent.putExtra("ITEM_NAME", "Water")
             itemType = "Water"
-            intent.putExtra("QUANTITY", waterValue.text.toString())
-            startActivity(intent)
+            intent.putExtra("QUANTITY", actualWaterValue.toString())
+            activity2launcher.launch(intent)
         }
         snacksUpdateButton.setOnClickListener {
             val intent = Intent(this, UpdateActivity::class.java)
             intent.putExtra("ITEM_NAME", "Snacks")
             itemType = "Snacks"
             intent.putExtra("QUANTITY", snacksValue.text.toString())
-            startActivity(intent)
+            activity2launcher.launch(intent)
         }
 
         val current = LocalDateTime.now()
@@ -71,26 +74,44 @@ class MainActivity : AppCompatActivity() {
         val formattedDate = current.format(formatter)
         dateValue.setText(formattedDate)
 
-
-
-
-
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
-            val resultName = data?.getStringExtra("ITEM_NAME")
-            val resultQuantityString = data?.getStringExtra("QUANTITY")
-            val resultQuantityInt = resultQuantityString?.toInt()
-            if (resultName == "Water") {
-                waterValue.setText("$resultQuantityInt")
-            } else if (resultName == "Meals") {
-                mealsValue.setText("$resultQuantityInt")
+    private val activity2launcher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            var quantityResult = result.data?.getStringExtra("QUANTITY")
+            var itemNameResult = result.data?.getStringExtra("ITEM_NAME")
+            val resultQuantityInt = quantityResult?.toIntOrNull()
+            if (resultQuantityInt != null) {
+                when (itemNameResult) {
+                    "Water" -> waterValue.setText("$resultQuantityInt cups")
+                    "Meals" -> mealsValue.setText("$resultQuantityInt")
+                    "Snacks" -> snacksValue.setText("$resultQuantityInt")
+                }
             } else {
-                snacksValue.setText("$resultQuantityInt")
+                Log.e("MainActivity", "Invalid quantity received")
             }
         }
+
     }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+//            val resultName = data?.getStringExtra("ITEM_NAME")
+//            val resultQuantityString = data?.getStringExtra("QUANTITY")
+//            val resultQuantityInt = resultQuantityString?.toIntOrNull()
+//            if (resultQuantityInt != null) {
+//                when (resultName) {
+//                    "Water" -> waterValue.setText("$resultQuantityInt")
+//                    "Meals" -> mealsValue.setText("$resultQuantityInt")
+//                    "Snacks" -> snacksValue.setText("$resultQuantityInt")
+//                }
+//            } else {
+//                Log.e("MainActivity", "Invalid quantity received")
+//            }
+//        }
+//    }
 }

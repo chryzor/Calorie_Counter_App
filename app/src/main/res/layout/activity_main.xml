@@ -67,12 +67,12 @@
         android:id="@+id/mealsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
         android:text="Meals"
-        android:textSize="18sp"
         android:textColor="@android:color/holo_green_dark"
-        app:layout_constraintTop_toBottomOf="@id/dateLabel"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintTop_toBottomOf="@id/dateLabel" />
 
     <TextView
         android:id="@+id/mealsValue"
@@ -86,36 +86,37 @@
         app:layout_constraintStart_toEndOf="@id/mealsLabel"
         app:layout_constraintTop_toTopOf="@id/mealsLabel" />
 
+    <!-- Water Section -->
     <Button
         android:id="@+id/mealsUpdateButton"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
+        android:layout_width="104dp"
+        android:layout_height="50dp"
+        android:backgroundTint="#7E57C2"
         android:text="Update"
         android:textColor="#fff"
-        android:backgroundTint="#7E57C2"
-        app:layout_constraintTop_toTopOf="@id/mealsLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginStart="16dp"/>
+        app:layout_constraintTop_toTopOf="@id/mealsLabel" />
 
-    <!-- Water Section -->
+    <!-- Snacks Section -->
+
     <TextView
         android:id="@+id/waterLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="56dp"
         android:text="Water"
-        android:textSize="18sp"
         android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintTop_toBottomOf="@id/mealsLabel"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"/>
+        app:layout_constraintTop_toBottomOf="@id/mealsLabel" />
 
-    <!-- Snacks Section -->
     <TextView
         android:id="@+id/waterValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="4dp"
         android:text="3 cups"
         android:textColor="#444"
         android:textSize="18sp"
@@ -126,32 +127,31 @@
         android:id="@+id/waterUpdateButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
         android:backgroundTint="#7E57C2"
         android:text="Update"
         android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/waterLabel" />
 
+    <!-- Total Calories -->
+
     <TextView
         android:id="@+id/snacksLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:text="Snacks"
-        android:textSize="18sp"
         android:textColor="@android:color/holo_red_dark"
-        app:layout_constraintTop_toBottomOf="@id/waterLabel"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="16dp"/>
-
-    <!-- Total Calories -->
+        app:layout_constraintTop_toBottomOf="@id/waterLabel" />
 
     <TextView
         android:id="@+id/snacksValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="4dp"
         android:text="210"
         android:textColor="#444"
         android:textSize="18sp"
@@ -162,7 +162,6 @@
         android:id="@+id/snacksUpdateButton"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
         android:backgroundTint="#7E57C2"
         android:text="Update"
         android:textColor="#fff"
@@ -173,19 +172,21 @@
         android:id="@+id/totalLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="60dp"
         android:text="Total"
         android:textColor="#444"
         android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/snacksLabel" />
+        app:layout_constraintTop_toBottomOf="@id/snacksLabel"
+        app:layout_constraintVertical_bias="0.178" />
 
     <TextView
         android:id="@+id/totalValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
+        android:layout_marginStart="124dp"
         android:layout_marginTop="4dp"
         android:text="330"
         android:textColor="#444"
